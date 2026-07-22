@@ -159,136 +159,140 @@
   </div>
 
   <script>
-    // Configurar worker de PDF.js
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+// Configurar worker de PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista de Manuales con ruta a sus PDFs de muestra (3 páginas cada uno)
-    const manuales = [
-      { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", file: "pdf/tc900-preview.pdf" },
-      { id: 2, title: "2. Cámaras Frigoríficas de Baja Temp", tag: "Refrigeración", icon: "snowflake", file: "pdf/camaras-preview.pdf" },
-      { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", file: "pdf/electricidad-preview.pdf" },
-      { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", file: "pdf/chillers-preview.pdf" },
-      { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", file: "pdf/vrf-preview.pdf" },
-      { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", file: "pdf/vfd-preview.pdf" }
-    ];
+// Lista COMPLETA con los 13 Manuales
+const manuales = [
+  { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", file: "pdf/tc900-preview.pdf" },
+  { id: 2, title: "2. Cámaras Frigoríficas de Baja Temp", tag: "Refrigeración", icon: "snowflake", file: "pdf/camaras-preview.pdf" },
+  { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", file: "pdf/electricidad-preview.pdf" },
+  { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", file: "pdf/chillers-preview.pdf" },
+  { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", file: "pdf/vrf-preview.pdf" },
+  { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", file: "pdf/vfd-preview.pdf" },
+  { id: 7, title: "7. Refrigerantes Ecológicos R-134a, R-404A y R-32", tag: "Refrigeración", icon: "droplet", file: "pdf/refrigerantes-preview.pdf" },
+  { id: 8, title: "8. Lectura e Interpretación de Planos Eléctricos", tag: "Electricidad", icon: "file-text", file: "pdf/planos-preview.pdf" },
+  { id: 9, title: "9. Automatización con PLC para HVAC", tag: "Automatización", icon: "terminal", file: "pdf/plc-preview.pdf" },
+  { id: 10, title: "10. Torres de Enfriamiento y Bombas de Agua", tag: "Hidráulica", icon: "waves", file: "pdf/torres-preview.pdf" },
+  { id: 11, title: "11. Detección de Fugas & Vacío Profundo", tag: "Mantenimiento", icon: "search", file: "pdf/vacio-preview.pdf" },
+  { id: 12, title: "12. Tableros de Fuerza y Control de Motores", tag: "Electricidad", icon: "shield", file: "pdf/tableros-preview.pdf" },
+  { id: 13, title: "13. Eficiencia Energética & Auditoría HVAC", tag: "Gestión", icon: "trending-up", file: "pdf/eficiencia-preview.pdf" }
+];
 
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    let currentManual = null;
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let currentManual = null;
 
-    const scale = 1.1;
-    const canvas = document.getElementById('pdf-render');
-    const ctx = canvas.getContext('2d');
+const scale = 1.1;
+const canvas = document.getElementById('pdf-render');
+const ctx = canvas.getContext('2d');
 
-    // Generar Tarjetas
-    const container = document.getElementById('cards-container');
-    manuales.forEach(m => {
-      const card = document.createElement('div');
-      card.className = "glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 group";
-      card.innerHTML = `
-        <div>
-          <div class="flex justify-between items-center mb-4">
-            <span class="text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${m.tag}</span>
-            <span class="text-sm font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">$20 USD</span>
-          </div>
-          <div class="flex items-start gap-3 mb-3">
-            <div class="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
-              <i data-lucide="${m.icon}" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-white text-base leading-snug group-hover:text-cyan-300 transition-colors">${m.title}</h3>
-          </div>
-          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Incluye diagramas de conexión, tablas de parámetros y solución de fallas.</p>
+// Generar las 13 Tarjetas Dinámicamente
+const container = document.getElementById('cards-container');
+manuales.forEach(m => {
+  const card = document.createElement('div');
+  card.className = "glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 group";
+  card.innerHTML = `
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${m.tag}</span>
+        <span class="text-sm font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">$20 USD</span>
+      </div>
+      <div class="flex items-start gap-3 mb-3">
+        <div class="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+          <i data-lucide="${m.icon}" class="w-5 h-5"></i>
         </div>
+        <h3 class="font-bold text-white text-base leading-snug group-hover:text-cyan-300 transition-colors">${m.title}</h3>
+      </div>
+      <p class="text-xs text-slate-400 mb-6 leading-relaxed">Incluye diagramas de conexión, tablas de parámetros y solución de fallas.</p>
+    </div>
 
-        <div class="flex flex-col gap-2.5 pt-4 border-t border-slate-800/80">
-          <button onclick="openModal(${m.id})" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition-all active:scale-95">
-            <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa PDF (3 Pág)
-          </button>
-          <button onclick="buyManual('${m.title}')" class="w-full bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-cyan-500/30 transition-all active:scale-95">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar e-Book
-          </button>
-        </div>
-      `;
-      container.appendChild(card);
+    <div class="flex flex-col gap-2.5 pt-4 border-t border-slate-800/80">
+      <button onclick="openModal(${m.id})" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition-all active:scale-95">
+        <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa PDF (3 Pág)
+      </button>
+      <button onclick="buyManual('${m.title}')" class="w-full bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-cyan-500/30 transition-all active:scale-95">
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar e-Book
+      </button>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+// Abrir Modal y cargar PDF
+function openModal(id) {
+  currentManual = manuales.find(m => m.id === id);
+  document.getElementById('modal-title').innerText = currentManual.title;
+  document.getElementById('preview-modal').classList.remove('hidden');
+  document.getElementById('pdf-loading').classList.remove('hidden');
+  
+  pageNum = 1;
+  
+  // Cargar documento mediante PDF.js
+  pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
+    pdfDoc = pdf;
+    // Limitar la visualización máxima a 3 páginas
+    const totalPages = Math.min(pdf.numPages, 3);
+    document.getElementById('total-pages-num').innerText = totalPages;
+    
+    renderPage(pageNum);
+    document.getElementById('pdf-loading').classList.add('hidden');
+  }).catch(err => {
+    console.error("Error al cargar PDF: ", err);
+    document.getElementById('pdf-loading').innerText = "⚠️ Carga PDF de prueba no encontrada (Verifica carpeta /pdf)";
+  });
+}
+
+function renderPage(num) {
+  pageRendering = true;
+  pdfDoc.getPage(num).then(page => {
+    const viewport = page.getViewport({ scale: scale });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    
+    const renderTask = page.render(renderContext);
+    renderTask.promise.then(() => {
+      pageRendering = false;
+      document.getElementById('current-page-num').innerText = pageNum;
+      if (pageNumPending !== null) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
     });
+  });
+}
 
-    // Abrir Modal y cargar PDF
-    function openModal(id) {
-      currentManual = manuales.find(m => m.id === id);
-      document.getElementById('modal-title').innerText = currentManual.title;
-      document.getElementById('preview-modal').classList.remove('hidden');
-      document.getElementById('pdf-loading').classList.remove('hidden');
-      
-      pageNum = 1;
-      
-      // Cargar documento mediante PDF.js
-      pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
-        pdfDoc = pdf;
-        // Limitar la visualización máxima a 3 páginas
-        const totalPages = Math.min(pdf.numPages, 3);
-        document.getElementById('total-pages-num').innerText = totalPages;
-        
-        renderPage(pageNum);
-        document.getElementById('pdf-loading').classList.add('hidden');
-      }).catch(err => {
-        console.error("Error al cargar PDF: ", err);
-        document.getElementById('pdf-loading').innerText = "⚠️ Carga PDF de prueba no encontrada (Verifica carpeta /pdf)";
-      });
-    }
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
 
-    function renderPage(num) {
-      pageRendering = true;
-      pdfDoc.getPage(num).then(page => {
-        const viewport = page.getViewport({ scale: scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+// Navegación restringida a máximo 3 páginas
+function changePage(dir) {
+  const maxPages = Math.min(pdfDoc ? pdfDoc.numPages : 3, 3);
+  const newPage = pageNum + dir;
+  if (newPage >= 1 && newPage <= maxPages) {
+    pageNum = newPage;
+    queueRenderPage(pageNum);
+  }
+}
 
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
-        
-        const renderTask = page.render(renderContext);
-        renderTask.promise.then(() => {
-          pageRendering = false;
-          document.getElementById('current-page-num').innerText = pageNum;
-          if (pageNumPending !== null) {
-            renderPage(pageNumPending);
-            pageNumPending = null;
-          }
-        });
-      });
-    }
+function closeModal() {
+  document.getElementById('preview-modal').classList.add('hidden');
+}
 
-    function queueRenderPage(num) {
-      if (pageRendering) {
-        pageNumPending = num;
-      } else {
-        renderPage(num);
-      }
-    }
+function buyManual(title) {
+  alert(`Iniciando pasarela de pago para: ${title}\nPrecio: $20.00 USD`);
+}
 
-    // Navegación restringida a máximo 3 páginas
-    function changePage(dir) {
-      const maxPages = Math.min(pdfDoc ? pdfDoc.numPages : 3, 3);
-      const newPage = pageNum + dir;
-      if (newPage >= 1 && newPage <= maxPages) {
-        pageNum = newPage;
-        queueRenderPage(pageNum);
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('preview-modal').classList.add('hidden');
-    }
-
-    function buyManual(title) {
-      alert(`Iniciando pasarela de pago para: ${title}\nPrecio: $20.00 USD`);
-    }
-
-    lucide.createIcons();
-  </script>
-</body>
-</html>
+lucide.createIcons();
