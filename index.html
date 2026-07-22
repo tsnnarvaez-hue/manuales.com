@@ -88,10 +88,37 @@
     <p class="text-slate-400 text-base sm:text-lg max-w-3xl mx-auto mb-8 font-light leading-relaxed">
       Consulta las muestras de 3 páginas renderizadas en tiempo real directamente desde nuestros manuales técnicos en PDF.
     </p>
+
+    <!-- Stats Banner -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto border border-slate-800/80 rounded-2xl p-4 bg-slate-900/40 backdrop-blur">
+      <div>
+        <div class="text-2xl font-black text-cyan-400">13</div>
+        <div class="text-xs text-slate-400 font-mono">Manuales Full</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-blue-400">3 Pág</div>
+        <div class="text-xs text-slate-400 font-mono">Preview Gratis</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-indigo-400">PDF</div>
+        <div class="text-xs text-slate-400 font-mono">Descarga Directa</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-emerald-400">$20</div>
+        <div class="text-xs text-slate-400 font-mono">Precio Único</div>
+      </div>
+    </div>
   </section>
 
   <!-- Seccion de Tarjetas -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+    <div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <i data-lucide="layers" class="text-cyan-400 w-5 h-5"></i> Catálogo Completo de Manuales
+      </h2>
+      <span class="text-xs font-mono text-slate-400">13 Manuales Disponibles</span>
+    </div>
+
     <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <!-- Generado Dinámicamente por JS -->
     </div>
@@ -118,7 +145,7 @@
       </div>
 
       <!-- Área de Renderizado de PDF canvas -->
-      <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-950/60 relative">
+      <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-950/60 relative min-h-[350px]">
         
         <!-- Indicador de Carga -->
         <div id="pdf-loading" class="absolute inset-0 flex items-center justify-center bg-slate-950/80 z-10 text-cyan-400 font-mono text-sm gap-3">
@@ -159,140 +186,144 @@
   </div>
 
   <script>
-// Configurar worker de PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    // Configurar worker de PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-// Lista COMPLETA con los 13 Manuales
-const manuales = [
-  { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", file: "pdf/tc900-preview.pdf" },
-  { id: 2, title: "2. Cámaras Frigoríficas de Baja Temp", tag: "Refrigeración", icon: "snowflake", file: "pdf/camaras-preview.pdf" },
-  { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", file: "pdf/electricidad-preview.pdf" },
-  { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", file: "pdf/chillers-preview.pdf" },
-  { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", file: "pdf/vrf-preview.pdf" },
-  { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", file: "pdf/vfd-preview.pdf" },
-  { id: 7, title: "7. Refrigerantes Ecológicos R-134a, R-404A y R-32", tag: "Refrigeración", icon: "droplet", file: "pdf/refrigerantes-preview.pdf" },
-  { id: 8, title: "8. Lectura e Interpretación de Planos Eléctricos", tag: "Electricidad", icon: "file-text", file: "pdf/planos-preview.pdf" },
-  { id: 9, title: "9. Automatización con PLC para HVAC", tag: "Automatización", icon: "terminal", file: "pdf/plc-preview.pdf" },
-  { id: 10, title: "10. Torres de Enfriamiento y Bombas de Agua", tag: "Hidráulica", icon: "waves", file: "pdf/torres-preview.pdf" },
-  { id: 11, title: "11. Detección de Fugas & Vacío Profundo", tag: "Mantenimiento", icon: "search", file: "pdf/vacio-preview.pdf" },
-  { id: 12, title: "12. Tableros de Fuerza y Control de Motores", tag: "Electricidad", icon: "shield", file: "pdf/tableros-preview.pdf" },
-  { id: 13, title: "13. Eficiencia Energética & Auditoría HVAC", tag: "Gestión", icon: "trending-up", file: "pdf/eficiencia-preview.pdf" }
-];
+    // Lista COMPLETA con los 13 Manuales
+    const manuales = [
+      { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", file: "pdf/tc900-preview.pdf" },
+      { id: 2, title: "2. Cámaras Frigoríficas de Baja Temp", tag: "Refrigeración", icon: "snowflake", file: "pdf/camaras-preview.pdf" },
+      { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", file: "pdf/electricidad-preview.pdf" },
+      { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", file: "pdf/chillers-preview.pdf" },
+      { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", file: "pdf/vrf-preview.pdf" },
+      { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", file: "pdf/vfd-preview.pdf" },
+      { id: 7, title: "7. Refrigerantes Ecológicos R-134a, R-404A y R-32", tag: "Refrigeración", icon: "droplet", file: "pdf/refrigerantes-preview.pdf" },
+      { id: 8, title: "8. Lectura e Interpretación de Planos Eléctricos", tag: "Electricidad", icon: "file-text", file: "pdf/planos-preview.pdf" },
+      { id: 9, title: "9. Automatización con PLC para HVAC", tag: "Automatización", icon: "terminal", file: "pdf/plc-preview.pdf" },
+      { id: 10, title: "10. Torres de Enfriamiento y Bombas de Agua", tag: "Hidráulica", icon: "waves", file: "pdf/torres-preview.pdf" },
+      { id: 11, title: "11. Detección de Fugas & Vacío Profundo", tag: "Mantenimiento", icon: "search", file: "pdf/vacio-preview.pdf" },
+      { id: 12, title: "12. Tableros de Fuerza y Control de Motores", tag: "Electricidad", icon: "shield", file: "pdf/tableros-preview.pdf" },
+      { id: 13, title: "13. Eficiencia Energética & Auditoría HVAC", tag: "Gestión", icon: "trending-up", file: "pdf/eficiencia-preview.pdf" }
+    ];
 
-let pdfDoc = null;
-let pageNum = 1;
-let pageRendering = false;
-let pageNumPending = null;
-let currentManual = null;
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    let currentManual = null;
 
-const scale = 1.1;
-const canvas = document.getElementById('pdf-render');
-const ctx = canvas.getContext('2d');
+    const scale = 1.1;
+    const canvas = document.getElementById('pdf-render');
+    const ctx = canvas.getContext('2d');
 
-// Generar las 13 Tarjetas Dinámicamente
-const container = document.getElementById('cards-container');
-manuales.forEach(m => {
-  const card = document.createElement('div');
-  card.className = "glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 group";
-  card.innerHTML = `
-    <div>
-      <div class="flex justify-between items-center mb-4">
-        <span class="text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${m.tag}</span>
-        <span class="text-sm font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">$20 USD</span>
-      </div>
-      <div class="flex items-start gap-3 mb-3">
-        <div class="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
-          <i data-lucide="${m.icon}" class="w-5 h-5"></i>
+    // Generar las 13 Tarjetas Dinámicamente
+    const container = document.getElementById('cards-container');
+    manuales.forEach(m => {
+      const card = document.createElement('div');
+      card.className = "glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 group";
+      card.innerHTML = `
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${m.tag}</span>
+            <span class="text-sm font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">$20 USD</span>
+          </div>
+          <div class="flex items-start gap-3 mb-3">
+            <div class="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+              <i data-lucide="${m.icon}" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-white text-base leading-snug group-hover:text-cyan-300 transition-colors">${m.title}</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Incluye diagramas de conexión, tablas de parámetros y solución de fallas.</p>
         </div>
-        <h3 class="font-bold text-white text-base leading-snug group-hover:text-cyan-300 transition-colors">${m.title}</h3>
-      </div>
-      <p class="text-xs text-slate-400 mb-6 leading-relaxed">Incluye diagramas de conexión, tablas de parámetros y solución de fallas.</p>
-    </div>
 
-    <div class="flex flex-col gap-2.5 pt-4 border-t border-slate-800/80">
-      <button onclick="openModal(${m.id})" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition-all active:scale-95">
-        <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa PDF (3 Pág)
-      </button>
-      <button onclick="buyManual('${m.title}')" class="w-full bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-cyan-500/30 transition-all active:scale-95">
-        <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar e-Book
-      </button>
-    </div>
-  `;
-  container.appendChild(card);
-});
-
-// Abrir Modal y cargar PDF
-function openModal(id) {
-  currentManual = manuales.find(m => m.id === id);
-  document.getElementById('modal-title').innerText = currentManual.title;
-  document.getElementById('preview-modal').classList.remove('hidden');
-  document.getElementById('pdf-loading').classList.remove('hidden');
-  
-  pageNum = 1;
-  
-  // Cargar documento mediante PDF.js
-  pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
-    pdfDoc = pdf;
-    // Limitar la visualización máxima a 3 páginas
-    const totalPages = Math.min(pdf.numPages, 3);
-    document.getElementById('total-pages-num').innerText = totalPages;
-    
-    renderPage(pageNum);
-    document.getElementById('pdf-loading').classList.add('hidden');
-  }).catch(err => {
-    console.error("Error al cargar PDF: ", err);
-    document.getElementById('pdf-loading').innerText = "⚠️ Carga PDF de prueba no encontrada (Verifica carpeta /pdf)";
-  });
-}
-
-function renderPage(num) {
-  pageRendering = true;
-  pdfDoc.getPage(num).then(page => {
-    const viewport = page.getViewport({ scale: scale });
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderContext = {
-      canvasContext: ctx,
-      viewport: viewport
-    };
-    
-    const renderTask = page.render(renderContext);
-    renderTask.promise.then(() => {
-      pageRendering = false;
-      document.getElementById('current-page-num').innerText = pageNum;
-      if (pageNumPending !== null) {
-        renderPage(pageNumPending);
-        pageNumPending = null;
-      }
+        <div class="flex flex-col gap-2.5 pt-4 border-t border-slate-800/80">
+          <button onclick="openModal(${m.id})" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition-all active:scale-95">
+            <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa PDF (3 Pág)
+          </button>
+          <button onclick="buyManual('${m.title}')" class="w-full bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-cyan-500/30 transition-all active:scale-95">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar e-Book
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
     });
-  });
-}
 
-function queueRenderPage(num) {
-  if (pageRendering) {
-    pageNumPending = num;
-  } else {
-    renderPage(num);
-  }
-}
+    // Abrir Modal y cargar PDF
+    function openModal(id) {
+      currentManual = manuales.find(m => m.id === id);
+      document.getElementById('modal-title').innerText = currentManual.title;
+      document.getElementById('modal-buy-btn').onclick = () => buyManual(currentManual.title);
+      document.getElementById('preview-modal').classList.remove('hidden');
+      document.getElementById('pdf-loading').classList.remove('hidden');
+      
+      pageNum = 1;
+      
+      // Cargar documento mediante PDF.js
+      pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
+        pdfDoc = pdf;
+        // Limitar la visualización máxima a 3 páginas
+        const totalPages = Math.min(pdf.numPages, 3);
+        document.getElementById('total-pages-num').innerText = totalPages;
+        
+        renderPage(pageNum);
+        document.getElementById('pdf-loading').classList.add('hidden');
+      }).catch(err => {
+        console.error("Error al cargar PDF: ", err);
+        document.getElementById('pdf-loading').innerText = "⚠️ Carga PDF de prueba no encontrada (Verifica carpeta /pdf)";
+      });
+    }
 
-// Navegación restringida a máximo 3 páginas
-function changePage(dir) {
-  const maxPages = Math.min(pdfDoc ? pdfDoc.numPages : 3, 3);
-  const newPage = pageNum + dir;
-  if (newPage >= 1 && newPage <= maxPages) {
-    pageNum = newPage;
-    queueRenderPage(pageNum);
-  }
-}
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-function closeModal() {
-  document.getElementById('preview-modal').classList.add('hidden');
-}
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTask.promise.then(() => {
+          pageRendering = false;
+          document.getElementById('current-page-num').innerText = pageNum;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+    }
 
-function buyManual(title) {
-  alert(`Iniciando pasarela de pago para: ${title}\nPrecio: $20.00 USD`);
-}
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
+      }
+    }
 
-lucide.createIcons();
+    // Navegación restringida a máximo 3 páginas
+    function changePage(dir) {
+      const maxPages = Math.min(pdfDoc ? pdfDoc.numPages : 3, 3);
+      const newPage = pageNum + dir;
+      if (newPage >= 1 && newPage <= maxPages) {
+        pageNum = newPage;
+        queueRenderPage(pageNum);
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('preview-modal').classList.add('hidden');
+    }
+
+    function buyManual(title) {
+      alert(`Iniciando pasarela de pago para: ${title}\nPrecio: $20.00 USD`);
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
