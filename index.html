@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RefriDocs | Manuales Técnicos de Refrigeración & Climatización</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              400: '#38bdf8',
+              500: '#06b6d4',
+              600: '#0284c7',
+              900: '#0c4a6e',
+              accent: '#3b82f6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Glassmorphic Styles -->
+  <style>
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glow-effect {
+      box-shadow: 0 0 50px -10px rgba(56, 189, 248, 0.3);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- LOGO (Espacio reservado) -->
+      <div class="flex items-center gap-3 cursor-pointer">
+        <!-- Reemplaza el SVG de abajo por tu tag <img> con tu logo -->
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-brand-500/20">
+          <i data-lucide="snowflake" class="w-6 h-6 text-slate-950"></i>
+        </div>
+        <span class="text-xl font-extrabold tracking-tight">REFRI<span class="gradient-text">DOCS</span></span>
+      </div>
+
+      <!-- Menú -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#catalogo" class="hover:text-brand-400 transition-colors">Catálogo</a>
+        <a href="#beneficios" class="hover:text-brand-400 transition-colors">¿Por qué elegirnos?</a>
+        <a href="#testimonios" class="hover:text-brand-400 transition-colors">Garantía</a>
+      </div>
+
+      <a href="#catalogo" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-brand-500/25 hover:scale-105 active:scale-95">
+        Ver Manuales
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-36 pb-20 overflow-hidden">
+    <!-- Grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-500/30 text-brand-400 text-xs font-semibold mb-8 animate-bounce">
+        <i data-lucide="zap" class="w-4 h-4"></i> Entrega Inmediata a tu Correo 24/7
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight mb-6">
+        Manuales de Refrigeración Avanzada & <span class="gradient-text">Diagnóstico Técnico</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 font-normal">
+        Aumenta tu precisión técnica en campo. Diagramas de flujo, tablas de fallas de controladores industriales y guías paso a paso optimizadas para técnicos.
+      </p>
+
+      <!-- Banners de Confianza -->
+      <div class="flex flex-wrap justify-center items-center gap-8 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-brand-400 w-4 h-4"></i> Formato PDF HD</div>
+        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-brand-400 w-4 h-4"></i> Descarga Directa</div>
+        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-brand-400 w-4 h-4"></i> Pago 100% Seguro</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO DE MANUALES -->
+  <section id="catalogo" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Catálogo Especializado</h2>
+        <p class="text-slate-400">Selecciona el manual que necesitas y recíbelo al instante en tu Email.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- CARD 1 -->
+        <div class="glass rounded-3xl p-6 flex flex-col justify-between hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 to-indigo-500"></div>
+          <div>
+            <!-- IMAGEN DEL MANUAL (Espacio para tu mockup/portada) -->
+            <div class="w-full h-52 bg-slate-900/80 rounded-2xl mb-6 overflow-hidden relative flex items-center justify-center border border-slate-800 group-hover:border-slate-700 transition-colors">
+              <!-- Reemplaza el bloque de abajo por: <img src="URL_DE_TU_PORTADA" alt="Manual 1" class="w-full h-full object-cover"> -->
+              <div class="text-center p-4">
+                <i data-lucide="book-open" class="w-12 h-12 text-brand-400 mx-auto mb-2 opacity-80 group-hover:scale-110 transition-transform"></i>
+                <span class="text-xs text-slate-500 font-mono">[ PORTADA_MANUAL_1.PNG ]</span>
+              </div>
+              <span class="absolute top-3 right-3 bg-brand-500/20 text-brand-400 text-xs px-3 py-1 rounded-full font-bold backdrop-blur-md">PDF Completo</span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Diagnóstico Electrónico de Microprocesadores</h3>
+            <p class="text-slate-400 text-sm mb-6">Guía rápida de configuración de parámetros, códigos de alarma y diagramas de cableado para controladores Full Gauge y Carel.</p>
+            
+            <ul class="space-y-2 mb-6 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Tabla de códigos F01 a F30</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Diagramas de sondas NTC/PTC</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="text-2xl font-black text-white">$15.00 <span class="text-xs text-slate-500 font-normal">USD</span></span>
+              <span class="text-xs text-slate-400 line-through">$30.00</span>
+            </div>
+            <button onclick="abrirModal('Diagnóstico Electrónico de Microprocesadores', 15.00, 'manual-01')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-500 hover:text-slate-950 font-bold text-sm text-slate-200 transition-all border border-slate-700 hover:border-brand-500 flex items-center justify-center gap-2">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i> Comprar e Inmediato
+            </button>
+          </div>
+        </div>
+
+        <!-- CARD 2 (DESTACADA) -->
+        <div class="glass rounded-3xl p-6 flex flex-col justify-between border-2 border-brand-500/80 glow-effect relative hover:-translate-y-2 transition-all duration-300">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-indigo-500 text-slate-950 text-xs font-black px-4 py-1 rounded-full uppercase tracking-wider">Más Vendido</span>
+          <div>
+            <!-- IMAGEN DEL MANUAL -->
+            <div class="w-full h-52 bg-slate-900/80 rounded-2xl mb-6 overflow-hidden relative flex items-center justify-center border border-slate-800">
+              <!-- Reemplaza con tu imágen -->
+              <div class="text-center p-4">
+                <i data-lucide="file-text" class="w-12 h-12 text-brand-400 mx-auto mb-2 opacity-80"></i>
+                <span class="text-xs text-slate-500 font-mono">[ PORTADA_MANUAL_2.PNG ]</span>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2">Sistemas de Congelación & Cava Cuartos</h3>
+            <p class="text-slate-400 text-sm mb-6">Cálculo de carga térmica, ajuste de válvulas de expansión termostáticas (VET) y eliminación de retorno de líquido.</p>
+            
+            <ul class="space-y-2 mb-6 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Calibración de VET Danfoss/Emerson</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Cálculo práctico de SH y SC</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="text-2xl font-black text-white">$25.00 <span class="text-xs text-slate-500 font-normal">USD</span></span>
+              <span class="text-xs text-slate-400 line-through">$50.00</span>
+            </div>
+            <button onclick="abrirModal('Sistemas de Congelación & Cava Cuartos', 25.00, 'manual-02')" class="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4"></i> Obtener Acceso Instantáneo
+            </button>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="glass rounded-3xl p-6 flex flex-col justify-between hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+          <div>
+            <!-- IMAGEN DEL MANUAL -->
+            <div class="w-full h-52 bg-slate-900/80 rounded-2xl mb-6 overflow-hidden relative flex items-center justify-center border border-slate-800">
+              <!-- Reemplaza con tu imágen -->
+              <div class="text-center p-4">
+                <i data-lucide="cpu" class="w-12 h-12 text-brand-400 mx-auto mb-2 opacity-80"></i>
+                <span class="text-xs text-slate-500 font-mono">[ PORTADA_MANUAL_3.PNG ]</span>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Aire Acondicionado VRF/VRV & Inverter</h3>
+            <p class="text-slate-400 text-sm mb-6">Manual integral para localización de fallas en placas inverter, comunicaciones de bus de datos y presiones dinámicas.</p>
+            
+            <ul class="space-y-2 mb-6 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Medición de transistores IPM</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Códigos de error multisistema</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="text-2xl font-black text-white">$20.00 <span class="text-xs text-slate-500 font-normal">USD</span></span>
+              <span class="text-xs text-slate-400 line-through">$40.00</span>
+            </div>
+            <button onclick="abrirModal('Aire Acondicionado VRF/VRV & Inverter', 20.00, 'manual-03')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-500 hover:text-slate-950 font-bold text-sm text-slate-200 transition-all border border-slate-700 hover:border-brand-500 flex items-center justify-center gap-2">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i> Comprar e Inmediato
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE CHECKOUT / PROCESO DE PAGO -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass max-w-md w-full rounded-3xl p-6 border border-slate-800 relative animate-in fade-in zoom-in duration-200">
+      
+      <button onclick="cerrarModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-xs text-brand-400 font-mono font-bold uppercase tracking-wider">Checkout Seguro</span>
+        <h3 id="modalTitulo" class="text-xl font-bold text-white mt-1">Nombre del Manual</h3>
+        <p class="text-slate-400 text-xs mt-1">El manual PDF será enviado automáticamente al email que ingreses.</p>
+      </div>
+
+      <form id="paymentForm" onsubmit="procesarCompra(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre Completo</label>
+          <input type="text" id="clienteNombre" required placeholder="Ej. Juan Pérez" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Correo Gmail (Donde recibirás el PDF)</label>
+          <input type="email" id="clienteEmail" required placeholder="ejemplo@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="pt-2 border-t border-slate-800">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm font-semibold text-slate-300">Total a pagar:</span>
+            <span id="modalPrecio" class="text-2xl font-black text-brand-400">$0.00 USD</span>
+          </div>
+
+          <button type="submit" id="btnPagar" class="w-full py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2">
+            <i data-lucide="lock" class="w-4 h-4"></i> Pagar y Recibir Manual
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 py-12 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-xs">
+      <p class="mb-4">&copy; 2026 REFRI-DOCS. Todos los derechos reservados.</p>
+      <p>Soporte Técnico Especializado en Climatización & Refrigeración Industrial.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS Y LÓGICA DE INTERACCIÓN -->
+  <script>
+    lucide.createIcons();
+
+    let manualSeleccionado = { titulo: '', precio: 0, id: '' };
+
+    function abrirModal(titulo, precio, id) {
+      manualSeleccionado = { titulo, precio, id };
+      document.getElementById('modalTitulo').innerText = titulo;
+      document.getElementById('modalPrecio').innerText = `$${precio.toFixed(2)} USD`;
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    async function procesarCompra(event) {
+      event.preventDefault();
+      const btn = document.getElementById('btnPagar');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Procesando...`;
+      lucide.createIcons();
+
+      const nombre = document.getElementById('clienteNombre').value;
+      const email = document.getElementById('clienteEmail').value;
+
+      try {
+        // Petición al endpoint backend Vercel
+        const response = await fetch('/api/webhook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            item: manualSeleccionado,
+            cliente: { nombre, email }
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(`¡Gracias por tu compra ${nombre}! El manual ha sido verificado y enviado con éxito a ${email}. Checkea tu bandeja de entrada o Spam.`);
+          cerrarModal();
+        } else {
+          alert('Hubo un detalle procesando la orden: ' + data.error);
+        }
+      } catch (err) {
+        alert('Error de conexión con el servidor de checkout.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="lock" class="w-4 h-4"></i> Pagar y Recibir Manual`;
+        lucide.createIcons();
+      }
+    }
+  </script>
+</body>
+</html>
