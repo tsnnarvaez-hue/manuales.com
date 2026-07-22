@@ -14,22 +14,9 @@
         extend: {
           colors: {
             brand: {
-              50: '#f0f9ff',
               400: '#38bdf8',
               500: '#0ea5e9',
               600: '#0284c7',
-              900: '#0c4a6e',
-              950: '#082f49',
-            }
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'glow': 'glow 3s ease-in-out infinite alternate',
-          },
-          keyframes: {
-            glow: {
-              '0%': { boxShadow: '0 0 15px rgba(14, 165, 233, 0.2)' },
-              '100%': { boxShadow: '0 0 35px rgba(14, 165, 233, 0.6)' }
             }
           }
         }
@@ -38,11 +25,14 @@
   </script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- PDF.js Librería CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
   <style>
     body { font-family: 'Inter', sans-serif; }
-    .code-font { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(12px);
@@ -61,7 +51,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden">
 
-  <!-- Glow De Fondo / Ambient Light -->
+  <!-- Glow De Fondo -->
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-tr from-cyan-600/20 via-blue-600/10 to-purple-600/20 blur-[120px] pointer-events-none -z-10 rounded-full"></div>
 
   <!-- Navbar -->
@@ -78,63 +68,36 @@
       </div>
       <div class="hidden sm:flex items-center gap-4">
         <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> 13 Manuales Disponibles
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Visor Interactivo PDF.js
         </span>
       </div>
     </div>
   </header>
 
-  <!-- Hero Banner Impactante -->
-  <section class="relative py-20 px-4 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 mb-6 shadow-inner">
+  <!-- Hero Banner -->
+  <section class="relative py-16 px-4 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 mb-6">
       <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
-      Documentación Oficial para Ingenieros & Técnicos
+      Documentación Técnica de Ingeniería
     </div>
     
     <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
-      Domina el Diagnóstico Avanzado en <span class="gradient-text">Refrigeración & Climatización</span>
+      Librería de Diagnóstico Avanzado en <span class="gradient-text">HVAC & Refrigeración</span>
     </h1>
     
-    <p class="text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto mb-10 font-light leading-relaxed">
-      Manuales con esquemas de conexionado, parámetros reales, solución de alarmas y guías paso a paso. Haz clic en cualquier tarjeta para explorar las <strong class="text-cyan-400 font-semibold">3 páginas de muestra gratuita</strong>.
+    <p class="text-slate-400 text-base sm:text-lg max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+      Consulta las muestras de 3 páginas renderizadas en tiempo real directamente desde nuestros manuales técnicos en PDF.
     </p>
-
-    <!-- Stats Banner -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto border border-slate-800/80 rounded-2xl p-4 bg-slate-900/40 backdrop-blur">
-      <div>
-        <div class="text-2xl font-black text-cyan-400">13</div>
-        <div class="text-xs text-slate-400 font-mono">Manuales Full</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-blue-400">3 Pág</div>
-        <div class="text-xs text-slate-400 font-mono">Preview Gratis</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-indigo-400">PDF</div>
-        <div class="text-xs text-slate-400 font-mono">Descarga Directa</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-emerald-400">$20</div>
-        <div class="text-xs text-slate-400 font-mono">Precio Único</div>
-      </div>
-    </div>
   </section>
 
-  <!-- Seccion de las 13 Tarjetas -->
+  <!-- Seccion de Tarjetas -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
-    <div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
-      <h2 class="text-xl font-bold text-white flex items-center gap-2">
-        <i data-lucide="layers" class="text-cyan-400 w-5 h-5"></i> Catálogo Completo de Manuales
-      </h2>
-      <span class="text-xs font-mono text-slate-400">Actualizado 2026</span>
-    </div>
-
     <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <!-- Carga dinámica -->
+      <!-- Generado Dinámicamente por JS -->
     </div>
   </main>
 
-  <!-- Modal Interactivo con Efecto E-Reader -->
+  <!-- Modal Visor PDF.js Interactivo -->
   <div id="preview-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-xl z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
     <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl shadow-cyan-500/10">
       
@@ -142,11 +105,11 @@
       <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950">
         <div class="flex items-center gap-3">
           <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
-            <i data-lucide="book-open" class="w-5 h-5"></i>
+            <i data-lucide="file-text" class="w-5 h-5"></i>
           </div>
           <div>
             <h3 id="modal-title" class="font-bold text-white text-base sm:text-lg">Manual</h3>
-            <p class="text-xs text-slate-400 font-mono">Visor de Muestra Técnica Gratuita</p>
+            <p class="text-xs text-slate-400 font-mono">Vista Previa Protegida (3 Páginas)</p>
           </div>
         </div>
         <button onclick="closeModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
@@ -154,122 +117,72 @@
         </button>
       </div>
 
-      <!-- Visor de PDF animado -->
-      <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-950/50">
-        <div class="w-full max-w-lg bg-slate-900 border border-cyan-500/30 rounded-xl p-8 min-h-[380px] flex flex-col justify-between shadow-2xl relative overflow-hidden group">
-          <div class="absolute top-0 right-0 px-3 py-1 bg-cyan-500/20 text-cyan-300 text-[10px] font-mono rounded-bl-lg border-b border-l border-cyan-500/30">
-            PÁGINA <span id="current-page-num">1</span> DE 3
-          </div>
-
-          <div id="modal-page-content" class="text-slate-200 text-sm leading-relaxed space-y-4 pt-4">
-            <!-- Pagina actual -->
-          </div>
-
-          <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>DOCUMENTO VERIFICADO</span>
-            <span class="text-cyan-400/80">SMART HAUSS PDF</span>
-          </div>
+      <!-- Área de Renderizado de PDF canvas -->
+      <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-950/60 relative">
+        
+        <!-- Indicador de Carga -->
+        <div id="pdf-loading" class="absolute inset-0 flex items-center justify-center bg-slate-950/80 z-10 text-cyan-400 font-mono text-sm gap-3">
+          <i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> Cargando documento PDF...
         </div>
 
-        <!-- Controles de navegación -->
+        <div class="relative shadow-2xl border border-slate-800 rounded-lg overflow-hidden bg-white">
+          <canvas id="pdf-render" class="block max-w-full h-auto"></canvas>
+        </div>
+
+        <!-- Controles de navegación de páginas -->
         <div class="flex items-center gap-4 mt-6">
-          <button onclick="changePage(-1)" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border border-slate-700 transition-all active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Anterior
+          <button onclick="changePage(-1)" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 border border-slate-700 transition-all active:scale-95">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
           </button>
-          <div class="flex gap-1.5" id="page-dots">
-            <!-- Indicadores -->
+          
+          <div class="text-xs font-mono text-slate-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+            PÁGINA <span id="current-page-num" class="text-cyan-400 font-bold">1</span> DE <span id="total-pages-num" class="text-cyan-400 font-bold">3</span>
           </div>
-          <button onclick="changePage(1)" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border border-slate-700 transition-all active:scale-95">
-            Siguiente <i data-lucide="arrow-right" class="w-4 h-4"></i>
+
+          <button onclick="changePage(1)" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 border border-slate-700 transition-all active:scale-95">
+            Siguiente <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
 
-      <!-- Modal Footer / Checkout -->
+      <!-- Modal Footer -->
       <div class="p-5 border-t border-slate-800 bg-slate-950 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
-          <span class="text-xs text-slate-400 block font-mono">ACCESO COMPLETO AL MANUAL</span>
+          <span class="text-xs text-slate-400 block font-mono">ADQUIRIR MANUAL COMPLETO</span>
           <span class="text-2xl font-black text-emerald-400">$20.00 <span class="text-xs text-slate-400 font-normal">USD</span></span>
         </div>
         <button id="modal-buy-btn" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] active:scale-95">
-          <i data-lucide="download" class="w-5 h-5"></i> Comprar e-Book Completo
+          <i data-lucide="download" class="w-5 h-5"></i> Descargar e-Book Completo
         </button>
       </div>
     </div>
   </div>
 
   <script>
+    // Configurar worker de PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    // Lista de Manuales con ruta a sus PDFs de muestra (3 páginas cada uno)
     const manuales = [
-      { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", pages: [
-        "Página 1: Mapeo de parámetros avanzados. Configuración precisa de SetPoint en F26 (no confundir con F04). Ajustes de diferencial y límites de seguridad.",
-        "Página 2: Diagrama de conexión eléctrica. Integración de la sonda de deshielo y conexión de la resistencia del difusor evaporador.",
-        "Página 3: Protocolo de fallas. Solución paso a paso para alarmas E1 (Sonda 1), E2 (Sonda 2) y prevención de ciclos cortos."
-      ]},
-      { id: 2, title: "2. Cámaras Frigoríficas de Baja Temperatura", tag: "Refrigeración", icon: "snowflake", pages: [
-        "Página 1: Cálculo e inspección de sobrecalentamiento (Superheat) en evaporadores. Control de presiones de baja a 38 PSI.",
-        "Página 2: Ajuste fino de VXR/VET Danfoss. Mitigación del retorno de líquido acumulado en el acumulador de succión.",
-        "Página 3: Mantenimiento Preventivo: Ciclos de deshielo por gas caliente vs. resistencias eléctricas y protección del compresor."
-      ]},
-      { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", pages: [
-        "Página 1: Evaluación de capacidad máxima de corriente en bajantes principales y cálculo de caída de tensión.",
-        "Página 2: Balanceo técnico de fases en tableros trifásicos bajo carga intensiva de inverters.",
-        "Página 3: Protecciones de motor: Selección de guardamotores, relés térmicos y cálculo de interruptores de caja moldeada."
-      ]},
-      { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", pages: [
-        "Página 1: Inspección de evaporadores inundados y análisis de flujo de agua en intercambiadores de placas.",
-        "Página 2: Diagnóstico de acidez en aceite sintético POE y prueba de humedad mediante visor de líquido.",
-        "Página 3: Protocolo de limpieza química de condensadores enfriados por agua y prueba de estanqueidad."
-      ]},
-      { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", pages: [
-        "Página 1: Direccionamiento manual y automático de unidades interiores. Mapeo de bus de comunicación RS-485.",
-        "Página 2: Carga exacta de refrigerante R-410A por subenfriamiento y cálculo de longitud equivalente de tubería.",
-        "Página 3: Diagnóstico de tarjetas de control Inverter: Verificación de módulo IPM y prueba de transistores IGBT."
-      ]},
-      { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", pages: [
-        "Página 1: Configuración de rampas de aceleración/desaceleración para evitar golpes de ariete en bombas.",
-        "Página 2: Escalamiento de señales analógicas 4-20mA / 0-10V desde sensores de presión diferencial.",
-        "Página 3: Modo de control PID interno para presión constante en sistemas de agua helada."
-      ]},
-      { id: 7, title: "7. Refrigerantes Ecológicos R-134a, R-404A y R-32", tag: "Refrigeración", icon: "droplet", pages: [
-        "Página 1: Tablas P-T dinámicas. Comprensión del deslizamiento de temperatura (Glide) en mezclas zeotrópicas.",
-        "Página 2: Procedimiento de barrido con agente ecológico Flush y presurización con Nitrógeno seco.",
-        "Página 3: Reemplazo y soldado de filtros deshidratadores en líneas de líquido con atmósfera inerte."
-      ]},
-      { id: 8, title: "8. Lectura e Interpretación de Planos Eléctricos", tag: "Electricidad", icon: "file-text", pages: [
-        "Página 1: Simbología internacional IEC vs NEMA en esquemas trifásicos y mandos a distancia.",
-        "Página 2: Mapeo de regletas de bornes, numeración de conductores y seguimiento de señales de enclavamiento.",
-        "Página 3: Ejemplo real: Interpretación de plano para central de frío de 4 compresores en paralelo."
-      ]},
-      { id: 9, title: "9. Automatización con PLC para HVAC", tag: "Automatización", icon: "terminal", pages: [
-        "Página 1: Lógica de programación en Lenguaje Escalera (Ladder) para arranque secuencial de compresores.",
-        "Página 2: Configuración de alarmas críticas y enclavamiento con presostatos de alta y baja presión.",
-        "Página 3: Comunicación Modbus RTU entre PLC e interfaz HMI para monitoreo remoto."
-      ]},
-      { id: 10, title: "10. Torres de Enfriamiento y Bombas de Agua", tag: "Hidráulica", icon: "waves", pages: [
-        "Página 1: Mantenimiento y alineación de sellos mecánicos en bombas centrífugas de acople directo.",
-        "Página 2: Balanceo de caudal en torres de enfriamiento y prevención de cavitación en la succión.",
-        "Página 3: Control automático de purga para prevención de sedimentos e incrustaciones calcáreas."
-      ]},
-      { id: 11, title: "11. Detección de Fugas & Vacío Profundo", tag: "Mantenimiento", icon: "search", pages: [
-        "Página 1: Protocolo de prueba de estanqueidad a 450 PSI con Nitrógeno seco y rastreador.",
-        "Página 2: Técnica de vacío profundo por debajo de 500 micrones utilizando vacuómetro digital.",
-        "Página 3: Rompimiento de vacío con refrigerante en fase líquida para evitar desintegración de aceite."
-      ]},
-      { id: 12, title: "12. Tableros de Fuerza y Control de Motores", tag: "Electricidad", icon: "shield", pages: [
-        "Página 1: Esquema de conexión para arranque Estrella-Triángulo (Y-Δ) con temporizador neumático/electrónico.",
-        "Página 2: Parametrización de arrancadores suaves (Soft Starters) y límite de corriente de arranque.",
-        "Página 3: Montaje físico en gabinete IP65 y ventilación forzada para disipación térmica."
-      ]},
-      { id: 13, title: "13. Eficiencia Energética & Auditoría HVAC", tag: "Gestión", icon: "trending-up", pages: [
-        "Página 1: Medición e interpretación del Factor de Potencia (FP) y corrección mediante bancos de capacitores.",
-        "Página 2: Cálculo de COP y EER real en plantas de enfriamiento para reducción de consumo eléctrico.",
-        "Página 3: Plan de migración a tecnología Inverter con análisis de retorno de inversión (ROI)."
-      ]}
+      { id: 1, title: "1. Controladores TC-900 Full Gauge", tag: "Automatización", icon: "cpu", file: "pdf/tc900-preview.pdf" },
+      { id: 2, title: "2. Cámaras Frigoríficas de Baja Temp", tag: "Refrigeración", icon: "snowflake", file: "pdf/camaras-preview.pdf" },
+      { id: 3, title: "3. Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "zap", file: "pdf/electricidad-preview.pdf" },
+      { id: 4, title: "4. Mantenimiento y Diagnóstico de Chillers", tag: "HVAC", icon: "activity", file: "pdf/chillers-preview.pdf" },
+      { id: 5, title: "5. Sistemas VRF / VRV Inverter", tag: "Climatización", icon: "wind", file: "pdf/vrf-preview.pdf" },
+      { id: 6, title: "6. Variadores de Frecuencia (VFD) en HVAC", tag: "Control", icon: "sliders", file: "pdf/vfd-preview.pdf" }
     ];
 
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
     let currentManual = null;
-    let currentPageIdx = 0;
 
+    const scale = 1.1;
+    const canvas = document.getElementById('pdf-render');
+    const ctx = canvas.getContext('2d');
+
+    // Generar Tarjetas
     const container = document.getElementById('cards-container');
     manuales.forEach(m => {
       const card = document.createElement('div');
@@ -286,58 +199,93 @@
             </div>
             <h3 class="font-bold text-white text-base leading-snug group-hover:text-cyan-300 transition-colors">${m.title}</h3>
           </div>
-          <p class="text-xs text-slate-400 mb-6 line-clamp-2 leading-relaxed">Guía práctica profesional con esquemas, parámetros de ajuste y diagnóstico de campo.</p>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Incluye diagramas de conexión, tablas de parámetros y solución de fallas.</p>
         </div>
 
         <div class="flex flex-col gap-2.5 pt-4 border-t border-slate-800/80">
-          <button onclick="openModal(${m.id})" class="w-full bg-slate-800/90 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700/80 transition-all active:scale-95">
-            <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa (3 Pág)
+          <button onclick="openModal(${m.id})" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition-all active:scale-95">
+            <i data-lucide="eye" class="w-4 h-4 text-cyan-400"></i> Vista Previa PDF (3 Pág)
           </button>
           <button onclick="buyManual('${m.title}')" class="w-full bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 border border-cyan-500/30 transition-all active:scale-95">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar PDF
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Comprar e-Book
           </button>
         </div>
       `;
       container.appendChild(card);
     });
 
+    // Abrir Modal y cargar PDF
     function openModal(id) {
       currentManual = manuales.find(m => m.id === id);
-      currentPageIdx = 0;
       document.getElementById('modal-title').innerText = currentManual.title;
-      document.getElementById('modal-buy-btn').onclick = () => buyManual(currentManual.title);
-      updateModalPage();
       document.getElementById('preview-modal').classList.remove('hidden');
+      document.getElementById('pdf-loading').classList.remove('hidden');
+      
+      pageNum = 1;
+      
+      // Cargar documento mediante PDF.js
+      pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
+        pdfDoc = pdf;
+        // Limitar la visualización máxima a 3 páginas
+        const totalPages = Math.min(pdf.numPages, 3);
+        document.getElementById('total-pages-num').innerText = totalPages;
+        
+        renderPage(pageNum);
+        document.getElementById('pdf-loading').classList.add('hidden');
+      }).catch(err => {
+        console.error("Error al cargar PDF: ", err);
+        document.getElementById('pdf-loading').innerText = "⚠️ Carga PDF de prueba no encontrada (Verifica carpeta /pdf)";
+      });
+    }
+
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTask.promise.then(() => {
+          pageRendering = false;
+          document.getElementById('current-page-num').innerText = pageNum;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+    }
+
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
+      }
+    }
+
+    // Navegación restringida a máximo 3 páginas
+    function changePage(dir) {
+      const maxPages = Math.min(pdfDoc ? pdfDoc.numPages : 3, 3);
+      const newPage = pageNum + dir;
+      if (newPage >= 1 && newPage <= maxPages) {
+        pageNum = newPage;
+        queueRenderPage(pageNum);
+      }
     }
 
     function closeModal() {
       document.getElementById('preview-modal').classList.add('hidden');
     }
 
-    function changePage(dir) {
-      if (!currentManual) return;
-      const newPage = currentPageIdx + dir;
-      if (newPage >= 0 && newPage < 3) {
-        currentPageIdx = newPage;
-        updateModalPage();
-      }
-    }
-
-    function updateModalPage() {
-      document.getElementById('modal-page-content').innerText = currentManual.pages[currentPageIdx];
-      document.getElementById('current-page-num').innerText = currentPageIdx + 1;
-      
-      const dotsContainer = document.getElementById('page-dots');
-      dotsContainer.innerHTML = '';
-      for(let i=0; i<3; i++) {
-        const dot = document.createElement('div');
-        dot.className = `w-2 h-2 rounded-full transition-all ${i === currentPageIdx ? 'bg-cyan-400 w-5' : 'bg-slate-700'}`;
-        dotsContainer.appendChild(dot);
-      }
-    }
-
     function buyManual(title) {
-      alert(`Iniciando checkout seguro para: ${title}\nPrecio: $20.00 USD`);
+      alert(`Iniciando pasarela de pago para: ${title}\nPrecio: $20.00 USD`);
     }
 
     lucide.createIcons();
