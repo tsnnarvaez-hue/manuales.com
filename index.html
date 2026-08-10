@@ -285,25 +285,25 @@
     <p class="text-[11px] text-slate-600">Documentación protegida. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
+<script>
     // Configurar worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista EXACTA de tus 13 archivos dentro de la carpeta pdf/
+    // Rutas adaptadas EXACTAMENTE a tu estructura actual en GitHub
     const manuales = [
-      { id: 1, title: "1. Conductores Eléctricos Smart Hauss", tag: "Electricidad", icon: "zap", file: "pdf/Conductores electricos smart hauss.pdf"},
-      { id: 2, title: "2. Conexión de Cargas Eléctricas", tag: "Electricidad", icon: "activity", file: "pdf/CONEXION DE CARGAS ELECTRICAS.pdf"},
-      { id: 3, title: "3. Curso de Reparación de Refrigeradores", tag: "Refrigeración", icon: "snowflake", file: "pdf/Curso de Reparación de Refrigeradores smart hauss.pdf"},
-      { id: 4, title: "4. Detalles de Instalación Eléctrica", tag: "Electricidad", icon: "sliders", file: "pdf/DETALLES DE INSTALACION ELECTRICA.pdf"},
-      { id: 5, title: "5. Diagramas Eléctricos Domiciliarios", tag: "Electricidad", icon: "cpu", file: "pdf/Diagramas Electricos Domiciliarios hauss.pdf"},
-      { id: 6, title: "6. Electricidad Domiciliaria", tag: "Electricidad", icon: "wind", file: "pdf/ELECTRICIDAD DOMICILIARIA.pdf"},
-      { id: 7, title: "7. Electricidad Básica", tag: "Electricidad", icon: "droplet", file: "pdf/ELECTRICIDAD BÁSICA.pdf"},
-      { id: 8, title: "8. Electricidad Domiciliaria - Parte 1", tag: "Electricidad", icon: "file-text", file: "pdf/ELECTRICIDAD DOMICILIARIA - 1.pdf"},
-      { id: 9, title: "9. Electricidad Domiciliaria - Parte 2", tag: "Electricidad", icon: "file-text", file: "pdf/ELECTRICIDAD DOMICILIARIA - 2.pdf"},
-      { id: 10, title: "10. Interruptor Inteligente Sonoff", tag: "Automatización", icon: "terminal", file: "pdf/Interruptor inteligente sonoff smart hauss.pdf"},
-      { id: 11, title: "11. Interruptores Smart Hauss", tag: "Electricidad", icon: "shield", file: "pdf/INTERRUPTORES SMART HAUSS.pdf"},
-      { id: 12, title: "12. Libro Instalaciones Eléctricas Industriales", tag: "Electricidad Industrial", icon: "trending-up", file: "pdf/LIBRO INSTALACIONES ELECTRICAS EN EDIFICACIONES INDUSTRIALES HAUSS.pdf"},
-      { id: 13, title: "13. Manual de Buenas Prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "pdf/Manual de buenas prácticas Venezuela.pdf"}
+      { id: 1, title: "1. Conductores Eléctricos Smart Hauss", tag: "Electricidad", icon: "zap", file: "PDF/ARCHIVOS/Conductores electricos smart hauss.pdf" },
+      { id: 2, title: "2. Conexión de Cargas Eléctricas", tag: "Electricidad", icon: "activity", file: "PDF/CONEXIÓN DE CARGAS ELECTRICAS.pdf" },
+      { id: 3, title: "3. Curso de Reparación de Refrigeradores", tag: "Refrigeración", icon: "snowflake", file: "PDF/ARCHIVOS/Curso de Reparación de Refrigeradores smart hauss.pdf" },
+      { id: 4, title: "4. Detalles de Instalación Eléctrica", tag: "Electricidad", icon: "sliders", file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" },
+      { id: 5, title: "5. Diagramas Eléctricos Domiciliarios", tag: "Electricidad", icon: "cpu", file: "PDF/ARCHIVOS/Diagramas Electricos Domiciliarios hauss.pdf" },
+      { id: 6, title: "6. Electricidad Domiciliaria", tag: "Electricidad", icon: "wind", file: "PDF/ELECTRICIDAD DOMICILIARIA.pdf" },
+      { id: 7, title: "7. Electricidad Básica", tag: "Electricidad", icon: "droplet", file: "PDF/ELECTRICIDAD BÁSICA.pdf" },
+      { id: 8, title: "8. Electricidad Domiciliaria - Parte 1", tag: "Electricidad", icon: "file-text", file: "PDF/ARCHIVOS/ELECTRICIDAD DOMICILIARIA - 1.pdf" },
+      { id: 9, title: "9. Electricidad Domiciliaria - Parte 2", tag: "Electricidad", icon: "file-text", file: "PDF/ARCHIVOS/ELECTRICIDAD DOMICILIARIA - 2.pdf" },
+      { id: 10, title: "10. Interruptor Inteligente Sonoff", tag: "Automatización", icon: "terminal", file: "PDF/ARCHIVOS/Interruptor inteligente sonoff smart hauss.pdf" },
+      { id: 11, title: "11. Interruptores Smart Hauss", tag: "Electricidad", icon: "shield", file: "PDF/ARCHIVOS/INTERRUPTORES SMART HAUSS.pdf" },
+      { id: 12, title: "12. Libro Instalaciones Eléctricas Industriales", tag: "Electricidad Industrial", icon: "trending-up", file: "PDF/ARCHIVOS/LIBRO INSTALACIONES ELECTRICAS EN EDIFICACIONES INDUSTRIALES HAUSS.pdf" },
+      { id: 13, title: "13. Manual de Buenas Prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "PDF/ARCHIVOS/Manual de buenas prácticas Venezuela.pdf" }
     ];
 
     let pdfDoc = null;
@@ -317,7 +317,7 @@
     const canvas = document.getElementById('pdf-render');
     const ctx = canvas.getContext('2d');
 
-    // Generar las 13 Tarjetas
+    // Generar las Tarjetas
     const container = document.getElementById('cards-container');
     manuales.forEach(m => {
       const card = document.createElement('div');
@@ -349,17 +349,22 @@
       container.appendChild(card);
     });
 
-    // Abrir Visor PDF
+    // Abrir Visor PDF con encodeURI para manejar tildes y espacios
     function openModal(id) {
       currentManual = manuales.find(m => m.id === id);
       document.getElementById('modal-title').innerText = currentManual.title;
       document.getElementById('modal-buy-btn').onclick = () => { closeModal(); openCheckout(id); };
       document.getElementById('preview-modal').classList.remove('hidden');
       document.getElementById('pdf-loading').classList.remove('hidden');
+      document.getElementById('pdf-loading').innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> Cargando muestra oficial...';
+      lucide.createIcons();
       
       pageNum = 1;
       
-      pdfjsLib.getDocument(currentManual.file).promise.then(pdf => {
+      // encodeURI resuelve los problemas de tildes y espacios en la URL de Vercel/GitHub
+      const secureUrl = encodeURI(currentManual.file);
+
+      pdfjsLib.getDocument(secureUrl).promise.then(pdf => {
         pdfDoc = pdf;
         const totalPages = Math.min(pdf.numPages, 3);
         document.getElementById('total-pages-num').innerText = totalPages;
