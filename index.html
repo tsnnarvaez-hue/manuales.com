@@ -99,7 +99,7 @@
     </h1>
     
     <p class="text-slate-400 text-base sm:text-lg max-w-3xl mx-auto mb-8 font-light leading-relaxed">
-      Aceda a la vista previa de 3 páginas de nuestra librería de ingeniería. Adquiera la versión digital completa con diagramas de conexión, algoritmos y tablas de fallas.
+      Acceda a la vista previa de 3 páginas de nuestra librería de ingeniería. Adquiera la versión digital completa con diagramas de conexión, algoritmos y tablas de fallas.
     </p>
 
     <!-- Stats Banner -->
@@ -289,21 +289,21 @@
     // Configurar worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista COMPLETA con los 13 Manuales
+    // Lista EXACTA de tus 13 archivos dentro de la carpeta pdf/
     const manuales = [
-      { id: 1, title: "1. DETALLES DE INSTALACION ELECTRICA", tag: "Electricidad", icon: "cpu", file: "pdf/DETALLES DE INSTALACION ELECTRICA.pdf" },
-      { id: 2, title: "2. INTERRUPTORES", tag: "Electricidad", icon: "snowflake", file: "pdf/INTERRUPTORES  SMART HAUSS.pdf" },
-      { id: 3, title: "3. CONDUCTORES ELECTRICOS", tag: "Electricidad", icon: "zap", file: "Conductores electricos smart hauss.pdf" },
-      { id: 4, title: "4. CONEXION DE CARGAS ELECTRICAS", tag: "Electricidad", icon: "activity", file: "CONEXION DE CARGAS ELECTRICAS.pdf" },
-      { id: 5, title: "5. Diagramas Electricos Domiciliarios hauss", tag: "Electricidad", icon: "wind", file: "Diagramas Electricos Domiciliarios hauss" },
-      { id: 6, title: "6. ELECTRICIDAD  DOMICILIARIA", tag: "Electricidad", icon: "sliders", file: ELECTRICIDAD  DOMICILIARIA.pdf" },
-      { id: 7, title: "7. ELECTRICIDAD BÁSICA", tag: "Electricidad", icon: "droplet", file: ELECTRICIDAD BÁSICA.pdf" },
-      { id: 8, title: "8. Lectura e Interpretación de Planos Eléctricos", tag: "Electricidad", icon: "file-text", file: "pdf/planos-preview.pdf" },
-      { id: 9, title: "9. Automatización con PLC para HVAC", tag: "Automatización", icon: "terminal", file: "pdf/plc-preview.pdf" },
-      { id: 10, title: "10. Torres de Enfriamiento y Bombas de Agua", tag: "Hidráulica", icon: "waves", file: "pdf/torres-preview.pdf" },
-      { id: 11, title: "11. Detección de Fugas & Vacío Profundo", tag: "Mantenimiento", icon: "search", file: "pdf/vacio-preview.pdf" },
-      { id: 12, title: "12. Tableros de Fuerza y Control de Motores", tag: "Electricidad", icon: "shield", file: "pdf/tableros-preview.pdf" },
-      { id: 13, title: "13. Eficiencia Energética & Auditoría HVAC", tag: "Gestión", icon: "trending-up", file: "pdf/eficiencia-preview.pdf" }
+      { id: 1, title: "1. Conductores Eléctricos Smart Hauss", tag: "Electricidad", icon: "zap", file: "pdf/Conductores electricos smart hauss.pdf" },
+      { id: 2, title: "2. Conexión de Cargas Eléctricas", tag: "Electricidad", icon: "activity", file: "pdf/CONEXION DE CARGAS ELECTRICAS.pdf" },
+      { id: 3, title: "3. Curso de Reparación de Refrigeradores", tag: "Refrigeración", icon: "snowflake", file: "pdf/Curso de Reparación de Refrigeradores smart hauss.pdf" },
+      { id: 4, title: "4. Detalles de Instalación Eléctrica", tag: "Electricidad", icon: "sliders", file: "pdf/DETALLES DE INSTALACION ELECTRICA.pdf" },
+      { id: 5, title: "5. Diagramas Eléctricos Domiciliarios", tag: "Electricidad", icon: "cpu", file: "pdf/Diagramas Electricos Domiciliarios hauss.pdf" },
+      { id: 6, title: "6. Electricidad Domiciliaria", tag: "Electricidad", icon: "wind", file: "pdf/ELECTRICIDAD DOMICILIARIA.pdf" },
+      { id: 7, title: "7. Electricidad Básica", tag: "Electricidad", icon: "droplet", file: "pdf/ELECTRICIDAD BÁSICA.pdf" },
+      { id: 8, title: "8. Electricidad Domiciliaria - Parte 1", tag: "Electricidad", icon: "file-text", file: "pdf/ELECTRICIDAD DOMICILIARIA - 1.pdf" },
+      { id: 9, title: "9. Electricidad Domiciliaria - Parte 2", tag: "Electricidad", icon: "file-text", file: "pdf/ELECTRICIDAD DOMICILIARIA - 2.pdf" },
+      { id: 10, title: "10. Interruptor Inteligente Sonoff", tag: "Automatización", icon: "terminal", file: "pdf/Interruptor inteligente sonoff smart hauss.pdf" },
+      { id: 11, title: "11. Interruptores Smart Hauss", tag: "Electricidad", icon: "shield", file: "pdf/INTERRUPTORES SMART HAUSS.pdf" },
+      { id: 12, title: "12. Libro Instalaciones Eléctricas Industriales", tag: "Electricidad Industrial", icon: "trending-up", file: "pdf/LIBRO INSTALACIONES ELECTRICAS EN EDIFICACIONES INDUSTRIALES HAUSS.pdf" },
+      { id: 13, title: "13. Manual de Buenas Prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "pdf/Manual de buenas prácticas Venezuela.pdf" }
     ];
 
     let pdfDoc = null;
