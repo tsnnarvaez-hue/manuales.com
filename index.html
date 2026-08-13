@@ -291,7 +291,7 @@
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
       <img src="https://i.pinimg.com/736x/0c/2b/47/0c2b473ac905566c4e7feb06c6f87b86.jpg" alt="Smart Hauss Logo" class="h-10 w-auto opacity-80 grayscale hover:grayscale-0 transition-all">
       <p class="font-semibold text-slate-700">Smart Hauss &copy; 2026 | Soluciones Integrales de Ingeniería, Climatización & Control</p>
-      <p class="text-[11px] text-slate-400 max-w-md">Todos los manuales técnicos expuestos están protegidos por derechos de autor. La copia o distribución no autorizada está strictly prohibida.</p>
+      <p class="text-[11px] text-slate-400 max-w-md">Todos los manuales técnicos expuestos están protegidos por derechos de autor. La copia o distribución no autorizada está estrictamente prohibida.</p>
     </div>
   </footer>
 
@@ -299,18 +299,74 @@
     // Configuración del Worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista reducida a solo 2 muestras del repositorio
+    // Lista completa de los 10 archivos observados en la captura de pantalla de GitHub
     const manuales = [
       { 
         id: 1, 
-        title: "1. LIBRO INSTALACIONES ELECTRICAS EN INTERIORES", 
+        title: "1. CONEXIÓN DE CARGAS ELECTRICAS", 
+        tag: "Electricidad", 
+        icon: "zap", 
+        file: "PDF/CONEXIÓN DE CARGAS ELECTRICAS.pdf" 
+      },
+      { 
+        id: 2, 
+        title: "2. Conductores electricos smart hauss", 
+        tag: "Electricidad", 
+        icon: "activity", 
+        file: "PDF/Conductores electricos smart hauss.docx" 
+      },
+      { 
+        id: 3, 
+        title: "3. Curso de Reparación de Refrigeradores smart hauss", 
+        tag: "Refrigeración", 
+        icon: "snowflake", 
+        file: "PDF/Curso de Reparación de Refrigeradores smart hauss.docx" 
+      },
+      { 
+        id: 4, 
+        title: "4. DETALLES DE INSTALACION ELECTRICA", 
+        tag: "Electricidad", 
+        icon: "sliders", 
+        file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" 
+      },
+      { 
+        id: 5, 
+        title: "5. Diagramas Electricos Domiciliarios hauss", 
+        tag: "Electricidad", 
+        icon: "cpu", 
+        file: "PDF/Diagramas Electricos Domiciliarios hauss.docx" 
+      },
+      { 
+        id: 6, 
+        title: "6. ELECTRICIDAD DOMICILIARIA", 
+        tag: "Electricidad", 
+        icon: "wind", 
+        file: "PDF/ELECTRICIDAD DOMICILIARIA.pdf" 
+      },
+      { 
+        id: 7, 
+        title: "7. ELECTRICIDAD BÁSICA", 
+        tag: "Electricidad", 
+        icon: "droplet", 
+        file: "PDF/ELECTRICIDAD BÁSICA.pdf" 
+      },
+      { 
+        id: 8, 
+        title: "8. Interruptor inteligente sonoff smart hauss", 
+        tag: "Automatización", 
+        icon: "terminal", 
+        file: "PDF/Interruptor inteligente sonoff smart hauss.docx" 
+      },
+      { 
+        id: 9, 
+        title: "9. LIBRO INSTALACIONES ELECTRICAS EN INTERIORES", 
         tag: "Electricidad", 
         icon: "trending-up", 
         file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" 
       },
       { 
-        id: 2, 
-        title: "2. Manual de buenas prácticas Venezuela", 
+        id: 10, 
+        title: "10. Manual de buenas prácticas Venezuela", 
         tag: "Refrigeración", 
         icon: "waves", 
         file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" 
