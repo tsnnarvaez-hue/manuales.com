@@ -279,7 +279,7 @@
       <!-- Checkout Footer -->
       <div class="p-5 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
         <span class="text-xs font-semibold text-slate-600">Monto Final: <strong class="text-emerald-600 text-base font-extrabold">$20.00 USD</strong></span>
-        <button onclick="processOrder()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all hover:scale-105">
+        <button onclick="processOrder(event)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all hover:scale-105">
           <i data-lucide="check-circle-2" class="w-4 h-4"></i> Completar Orden
         </button>
       </div>
@@ -291,7 +291,7 @@
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
       <img src="https://i.pinimg.com/736x/0c/2b/47/0c2b473ac905566c4e7feb06c6f87b86.jpg" alt="Smart Hauss Logo" class="h-10 w-auto opacity-80 grayscale hover:grayscale-0 transition-all">
       <p class="font-semibold text-slate-700">Smart Hauss &copy; 2026 | Soluciones Integrales de Ingeniería, Climatización & Control</p>
-      <p class="text-[11px] text-slate-400 max-w-md">Todos los manuales técnicos expuestos están protegidos por derechos de autor. La copia o distribución no autorizada está estrictamente prohibida.</p>
+      <p class="text-[11px] text-slate-400 max-w-md">Todos los manuales técnicos expuestos están protegidos por derechos de autor. La copia o distribución no autorizada está strictly prohibida.</p>
     </div>
   </footer>
 
@@ -299,19 +299,22 @@
     // Configuración del Worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista Completa de Manuales con Rutas
+    // Lista reducida a solo 2 muestras del repositorio
     const manuales = [
-      { id: 1, title: "1. Conductores Eléctricos Smart Hauss", tag: "Electricidad", icon: "zap", file: "PDF/ARCHIVOS/Conductores electricos smart hauss.pdf" },
-      { id: 2, title: "2. Conexión de Cargas Eléctricas", tag: "Electricidad", icon: "activity", file: "PDF/CONEXIÓN DE CARGAS ELECTRICAS.pdf" },
-      { id: 3, title: "3. Curso de Reparación de Refrigeradores", tag: "Refrigeración", icon: "snowflake", file: "PDF/Curso de Reparación de Refrigeradores smart hauss.pdf" },
-      { id: 4, title: "4. Detalles de Instalación Eléctrica", tag: "Electricidad", icon: "sliders", file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" },
-      { id: 5, title: "5. Diagramas Eléctricos Domiciliarios", tag: "Electricidad", icon: "cpu", file: "PDF/ARCHIVOS/Diagramas Electricos Domiciliarios hauss.pdf" },
-      { id: 6, title: "6. Electricidad Domiciliaria", tag: "Electricidad", icon: "wind", file: "PDF/ELECTRICIDAD DOMICILIARIA.pdf" },
-      { id: 7, title: "7. Electricidad Básica", tag: "Electricidad", icon: "droplet", file: "PDF/ELECTRICIDAD BÁSICA.pdf" },
-      { id: 10, title: "10. Interruptor Inteligente Sonoff", tag: "Automatización", icon: "terminal", file: "PDF/ARCHIVOS/Interruptor inteligente sonoff smart hauss.pdf" },
-      { id: 11, title: "11. Interruptores Smart Hauss", tag: "Electricidad", icon: "shield", file: "PDF/ARCHIVOS/INTERRUPTORES SMART HAUSS.pdf" },
-      { id: 12, title: "12. Libro Instalaciones Eléctricas Industriales", tag: "Electricidad", icon: "trending-up", file: "PDF/ARCHIVOS/LIBRO INSTALACIONES ELECTRICAS EN EDIFICACIONES INDUSTRIALES HAUSS.pdf" },
-      { id: 13, title: "13. Manual de Buenas Prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "PDF/ARCHIVOS/Manual de buenas prácticas Venezuela.pdf" }
+      { 
+        id: 1, 
+        title: "1. LIBRO INSTALACIONES ELECTRICAS EN INTERIORES", 
+        tag: "Electricidad", 
+        icon: "trending-up", 
+        file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" 
+      },
+      { 
+        id: 2, 
+        title: "2. Manual de buenas prácticas Venezuela", 
+        tag: "Refrigeración", 
+        icon: "waves", 
+        file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" 
+      }
     ];
 
     let pdfDoc = null;
@@ -385,7 +388,6 @@
       
       pageNum = 1;
       
-      // Manejo seguro de URLs para Vercel / GitHub
       const secureUrl = encodeURI(currentManual.file);
 
       pdfjsLib.getDocument(secureUrl).promise.then(pdf => {
@@ -467,30 +469,72 @@
       instructions.classList.remove('hidden');
 
       if(method === 'binance') {
-        instructions.innerHTML = `<p class="font-bold text-amber-700">Binance Pay / USDT</p><p>Transfiere <strong>20.00 USDT</strong> a la billetera o solicita Pay ID directo vía WhatsApp.</p>`;
+        instructions.innerHTML = `<p class="font-bold text-amber-700">Binance Pay / USDT</p><p>Transfiere <strong>20.00 USDT</strong> a la billetera oficial de la plataforma.</p>`;
       } else if(method === 'pagomovil') {
-        instructions.innerHTML = `<p class="font-bold text-blue-700">Pago Móvil (Bolívares Tasa BCV)</p><p>Te indicaremos la tasa oficial BCV del día y datos bancarios para la transferencia.</p>`;
+        instructions.innerHTML = `<p class="font-bold text-blue-700">Pago Móvil (Bolívares Tasa BCV)</p><p>Se procesará según la tasa oficial BCV del día.</p>`;
       } else if(method === 'zinli') {
-        instructions.innerHTML = `<p class="font-bold text-purple-700">Zinli USD</p><p>Envía $20.00 USD al correo oficial registrado en la plataforma.</p>`;
+        instructions.innerHTML = `<p class="font-bold text-purple-700">Zinli USD</p><p>Envía $20.00 USD al correo oficial registrado.</p>`;
       } else if(method === 'paypal') {
-        instructions.innerHTML = `<p class="font-bold text-sky-700">PayPal</p><p>Pago seguro internacional por $20.00 USD más comisiones correspondientes.</p>`;
+        instructions.innerHTML = `<p class="font-bold text-sky-700">PayPal</p><p>Pago seguro internacional por $20.00 USD.</p>`;
       }
     }
 
-    // Envío del Pedido a WhatsApp
-    function processOrder() {
-      const name = document.getElementById('buyer-name').value;
-      const email = document.getElementById('buyer-email').value;
-      const phone = document.getElementById('buyer-phone').value;
+    // Envío del Pedido al Webhook
+    async function processOrder(e) {
+      const name = document.getElementById('buyer-name').value.trim();
+      const email = document.getElementById('buyer-email').value.trim();
+      const phone = document.getElementById('buyer-phone').value.trim();
 
       if(!name || !email || !phone || !selectedMethod) {
         alert("Por favor completa tu Nombre, Correo, WhatsApp y selecciona un Método de Pago.");
         return;
       }
 
-      const mensaje = `Hola *Smart Hauss*, solicito la compra del e-Book:%0A%0A📘 *Manual:* ${encodeURIComponent(currentManual.title)}%0A💰 *Monto:* $20.00 USD%0A💳 *Método de Pago:* ${selectedMethod.toUpperCase()}%0A%0A👤 *Cliente:* ${encodeURIComponent(name)}%0A📧 *Correo:* ${encodeURIComponent(email)}%0A📱 *Teléfono:* ${encodeURIComponent(phone)}`;
-      
-      window.open(`https://wa.me/584128806114?text=${mensaje}`, '_blank');
+      // Reemplaza esta URL con la dirección de tu Webhook
+      const WEBHOOK_URL = "https://tu-servidor-o-webhook.com/api/compra";
+
+      const payload = {
+        fecha: new Date().toISOString(),
+        manual_id: currentManual.id,
+        manual_titulo: currentManual.title,
+        monto_usd: 20.00,
+        metodo_pago: selectedMethod,
+        cliente: {
+          nombre: name,
+          email: email,
+          telefono: phone
+        }
+      };
+
+      const buyBtn = e.currentTarget;
+      const originalText = buyBtn.innerHTML;
+      buyBtn.disabled = true;
+      buyBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Procesando...`;
+      lucide.createIcons();
+
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          alert("¡Orden enviada con éxito! Revisa tu correo electrónico para recibir tu manual.");
+          closeCheckout();
+        } else {
+          alert("Hubo un detalle al registrar tu orden. Inténtalo nuevamente.");
+        }
+      } catch (error) {
+        console.error("Error al enviar el Webhook:", error);
+        alert("Ocurrió un error de red al procesar el pedido.");
+      } finally {
+        buyBtn.disabled = false;
+        buyBtn.innerHTML = originalText;
+        lucide.createIcons();
+      }
     }
 
     // Inicializar la App
