@@ -236,26 +236,16 @@
                 <div class="text-[10px] text-slate-500 font-mono">Bolívares (BCV)</div>
               </div>
             </button>
-
-            <button onclick="selectPayment('zinli')" id="pay-zinli" class="pay-option border border-slate-200 bg-slate-50 p-3 rounded-xl text-left hover:border-brand-500 transition-all flex items-center gap-2.5">
-              <div class="p-2 rounded-lg bg-purple-100 text-purple-700"><i data-lucide="credit-card" class="w-4 h-4"></i></div>
-              <div>
-                <div class="text-xs font-bold text-slate-900">Zinli</div>
-                <div class="text-[10px] text-slate-500 font-mono">USD Digital</div>
-              </div>
-            </button>
-
-            <button onclick="selectPayment('paypal')" id="pay-paypal" class="pay-option border border-slate-200 bg-slate-50 p-3 rounded-xl text-left hover:border-brand-500 transition-all flex items-center gap-2.5">
-              <div class="p-2 rounded-lg bg-sky-100 text-sky-700"><i data-lucide="globe" class="w-4 h-4"></i></div>
-              <div>
-                <div class="text-xs font-bold text-slate-900">PayPal</div>
-                <div class="text-[10px] text-slate-500 font-mono">Internacional</div>
-              </div>
-            </button>
           </div>
         </div>
 
-        <div id="payment-instructions" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-1 text-slate-600 hidden"></div>
+        <!-- Instrucciones y Comprobante de Pago -->
+        <div id="payment-instructions" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-2 text-slate-600 hidden"></div>
+        
+        <div id="reference-container" class="space-y-2 hidden">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">3. Número de Referencia o Transacción</label>
+          <input type="text" id="payment-reference" placeholder="Ej: 123456 / Hash de Binance" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all">
+        </div>
       </div>
 
       <div class="p-5 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
@@ -278,19 +268,18 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista de archivos normalizada
-   const manuales = [
-  { id: 1, title: "1. CONEXIÓN DE CARGAS ELÉCTRICAS", tag: "Electricidad", icon: "zap", file: "PDF/CONEXION DE CARGAS ELECTRICAS.pdf" },
-  { id: 2, title: "2. Conductores eléctricos smart hauss", tag: "Electricidad", icon: "activity", file: "PDF/Conductores electricos smart hauss.pdf" },
-  { id: 3, title: "3. Curso de Reparación de Refrigeradores smart hauss", tag: "Refrigeración", icon: "snowflake", file: "PDF/Curso de Reparación de Refrigeradores smart hauss.pdf" },
-  { id: 4, title: "4. DETALLES DE INSTALACIÓN ELÉCTRICA", tag: "Electricidad", icon: "sliders", file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" },
-  { id: 5, title: "5. Diagramas Eléctricos Domiciliarios hauss", tag: "Electricidad", icon: "cpu", file: "PDF/Diagramas Electricos Domiciliarios hauss.pdf" },
-  { id: 6, title: "6. ELECTRICIDAD DOMICILIARIA", tag: "Electricidad", icon: "wind", file: "PDF/ELECTRICIDAD_DOMICILIARIA.pdf" },
-  { id: 7, title: "7. ELECTRICIDAD BÁSICA", tag: "Electricidad", icon: "droplet", file: "PDF/ELECTRICIDAD BÁSICA.pdf" },
-  { id: 8, title: "8. Interruptor inteligente sonoff smart hauss", tag: "Automatización", icon: "terminal", file: "PDF/Interruptor inteligente sonoff smart hauss.pdf" },
-  { id: 9, title: "9. LIBRO INSTALACIONES ELÉCTRICAS EN INTERIORES", tag: "Electricidad", icon: "trending-up", file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" },
-  { id: 10, title: "10. Manual de buenas prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" }
-];
+    const manuales = [
+      { id: 1, title: "1. CONEXIÓN DE CARGAS ELÉCTRICAS", tag: "Electricidad", icon: "zap", file: "PDF/CONEXION DE CARGAS ELECTRICAS.pdf" },
+      { id: 2, title: "2. Conductores eléctricos smart hauss", tag: "Electricidad", icon: "activity", file: "PDF/Conductores electricos smart hauss.pdf" },
+      { id: 3, title: "3. Curso de Reparación de Refrigeradores smart hauss", tag: "Refrigeración", icon: "snowflake", file: "PDF/Curso de Reparación de Refrigeradores smart hauss.pdf" },
+      { id: 4, title: "4. DETALLES DE INSTALACIÓN ELÉCTRICA", tag: "Electricidad", icon: "sliders", file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" },
+      { id: 5, title: "5. Diagramas Eléctricos Domiciliarios hauss", tag: "Electricidad", icon: "cpu", file: "PDF/Diagramas Electricos Domiciliarios hauss.pdf" },
+      { id: 6, title: "6. ELECTRICIDAD DOMICILIARIA", tag: "Electricidad", icon: "wind", file: "PDF/ELECTRICIDAD_DOMICILIARIA.pdf" },
+      { id: 7, title: "7. ELECTRICIDAD BÁSICA", tag: "Electricidad", icon: "droplet", file: "PDF/ELECTRICIDAD BÁSICA.pdf" },
+      { id: 8, title: "8. Interruptor inteligente sonoff smart hauss", tag: "Automatización", icon: "terminal", file: "PDF/Interruptor inteligente sonoff smart hauss.pdf" },
+      { id: 9, title: "9. LIBRO INSTALACIONES ELÉCTRICAS EN INTERIORES", tag: "Electricidad", icon: "trending-up", file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" },
+      { id: 10, title: "10. Manual de buenas prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" }
+    ];
 
     let pdfDoc = null;
     let pageNum = 1;
@@ -359,18 +348,13 @@
       document.getElementById('pdf-loading').classList.remove('hidden');
       
       pageNum = 1;
-      
-      // Decodificación y sanitización de ruta
-      const rawUrl = currentManual.file;
-      const secureUrl = encodeURI(rawUrl);
+      const secureUrl = encodeURI(currentManual.file);
 
       pdfjsLib.getDocument(secureUrl).promise.then(pdf => {
         pdfDoc = pdf;
         const totalPages = Math.min(pdf.numPages, 3);
         document.getElementById('total-pages-num').innerText = totalPages;
-        
         renderPage(pageNum);
-        document.getElementById('pdf-loading').classList.add('hidden');
       }).catch(err => {
         console.error("Error al cargar PDF: ", err);
         const loadingDiv = document.getElementById('pdf-loading');
@@ -395,6 +379,7 @@
         renderTask.promise.then(() => {
           pageRendering = false;
           document.getElementById('current-page-num').innerText = pageNum;
+          document.getElementById('pdf-loading').classList.add('hidden');
           if (pageNumPending !== null) {
             renderPage(pageNumPending);
             pageNumPending = null;
@@ -440,16 +425,27 @@
       document.getElementById(`pay-${method}`).classList.add('border-brand-500', 'bg-brand-50');
 
       const instructions = document.getElementById('payment-instructions');
+      const refContainer = document.getElementById('reference-container');
+      
       instructions.classList.remove('hidden');
+      refContainer.classList.remove('hidden');
 
       if(method === 'binance') {
-        instructions.innerHTML = `<p class="font-bold text-amber-700">Binance Pay / USDT</p><p>Transfiere <strong>20.00 USDT</strong> a la billetera oficial de la plataforma.</p>`;
+        instructions.innerHTML = `
+          <p class="font-bold text-amber-700 text-sm mb-1">Datos para Binance Pay:</p>
+          <p class="font-mono bg-white p-2 rounded border border-slate-200 select-all"><strong>Correo:</strong> tsn.narvaez@gmail.com</p>
+          <p class="mt-1 text-[11px] text-slate-500">Transfiera <strong>20.00 USDT</strong> e ingrese el número de referencia o Hash de la transacción abajo.</p>
+        `;
       } else if(method === 'pagomovil') {
-        instructions.innerHTML = `<p class="font-bold text-blue-700">Pago Móvil (Bolívares Tasa BCV)</p><p>Se procesará según la tasa oficial BCV del día.</p>`;
-      } else if(method === 'zinli') {
-        instructions.innerHTML = `<p class="font-bold text-purple-700">Zinli USD</p><p>Envía $20.00 USD al correo oficial registrado.</p>`;
-      } else if(method === 'paypal') {
-        instructions.innerHTML = `<p class="font-bold text-sky-700">PayPal</p><p>Pago seguro internacional por $20.00 USD.</p>`;
+        instructions.innerHTML = `
+          <p class="font-bold text-blue-700 text-sm mb-1">Datos para Pago Móvil:</p>
+          <div class="font-mono bg-white p-2.5 rounded border border-slate-200 space-y-1 select-all">
+            <p><strong>Banco:</strong> Banco de Venezuela (0102)</p>
+            <p><strong>Cédula:</strong> 18628400</p>
+            <p><strong>Teléfono:</strong> 04128806114</p>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-500">Realice el pago al cambio oficial del día (Tasa BCV) e ingrese los últimos 6 dígitos del número de referencia.</p>
+        `;
       }
     }
 
@@ -457,12 +453,14 @@
       const name = document.getElementById('buyer-name').value.trim();
       const email = document.getElementById('buyer-email').value.trim();
       const phone = document.getElementById('buyer-phone').value.trim();
+      const reference = document.getElementById('payment-reference').value.trim();
 
-      if(!name || !email || !phone || !selectedMethod) {
-        alert("Por favor completa tu Nombre, Correo, WhatsApp y selecciona un Método de Pago.");
+      if(!name || !email || !phone || !selectedMethod || !reference) {
+        alert("Por favor completa tu Nombre, Correo, WhatsApp, Método de Pago y Número de Referencia.");
         return;
       }
 
+      // Reemplaza esta URL con la endpoint de tu servidor, Make, n8n o Zapier
       const WEBHOOK_URL = "https://tu-servidor-o-webhook.com/api/compra";
 
       const payload = {
@@ -471,6 +469,7 @@
         manual_titulo: currentManual.title,
         monto_usd: 20.00,
         metodo_pago: selectedMethod,
+        referencia_pago: reference,
         cliente: {
           nombre: name,
           email: email,
@@ -494,7 +493,7 @@
         });
 
         if (response.ok) {
-          alert("¡Orden enviada con éxito! Revisa tu correo electrónico para recibir tu manual.");
+          alert("¡Orden enviada con éxito! Validaremos tu pago y recibirás tu manual en tu correo electrónico.");
           closeCheckout();
         } else {
           alert("Hubo un detalle al registrar tu orden. Inténtalo nuevamente.");
