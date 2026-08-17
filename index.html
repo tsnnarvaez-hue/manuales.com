@@ -80,7 +80,6 @@
   <!-- Hero Section -->
   <section class="relative py-16 px-4 bg-white border-b border-slate-200">
     <div class="max-w-5xl mx-auto text-center">
-      
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-xs font-bold text-brand-700 mb-6 shadow-sm">
         <i data-lucide="shield-check" class="w-4 h-4 text-brand-600"></i>
         Centro Oficial de Documentación Técnica Certificada
@@ -94,7 +93,6 @@
         Adquiera manuales de ingeniería diseñados para profesionales de campo. Incluyen esquemas de conexión, tablas de diagnósticos, algoritmos de falla y parámetros actualizados.
       </p>
 
-      <!-- Trust Badges Bar -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm">
         <div class="p-2 border-r border-slate-200/60 last:border-0">
           <div class="text-2xl font-extrabold text-slate-900">100%</div>
@@ -113,14 +111,11 @@
           <div class="text-xs font-medium text-slate-500">Precio Fijo por Manual</div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- Seccion Principal del Catálogo -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    
-    <!-- Filtros & Header de Catálogo -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
       <div>
         <h2 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -129,7 +124,6 @@
         <p class="text-xs text-slate-500 mt-1">Seleccione un e-Book para visualizar la muestra interactiva antes de la compra.</p>
       </div>
 
-      <!-- Quick Filter Category Buttons -->
       <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
         <button onclick="filterCategory('All')" class="filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-white shadow-sm">Todos</button>
         <button onclick="filterCategory('Electricidad')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-all">Electricidad</button>
@@ -138,18 +132,14 @@
       </div>
     </div>
 
-    <!-- Grid de Tarjetas de e-Books -->
-    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <!-- Generado Dinámicamente por JavaScript -->
-    </div>
-
+    <!-- Grid de Tarjetas -->
+    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
   </main>
 
   <!-- Modal 1: Visor PDF.js Interactivo -->
   <div id="preview-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
       
-      <!-- Modal Header -->
       <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
         <div class="flex items-center gap-3">
           <div class="p-2.5 rounded-xl bg-brand-50 text-brand-600 border border-brand-100">
@@ -165,7 +155,7 @@
         </button>
       </div>
 
-      <!-- Canvas PDF con Protección Anti-Copia -->
+      <!-- Canvas PDF -->
       <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-100 relative min-h-[400px] no-select" oncontextmenu="return false;">
         
         <div id="pdf-loading" class="absolute inset-0 flex items-center justify-center bg-white/90 z-10 text-brand-600 font-bold text-sm gap-3">
@@ -176,7 +166,6 @@
           <canvas id="pdf-render" class="block max-w-full h-auto"></canvas>
         </div>
 
-        <!-- Controles Navegación de Páginas -->
         <div class="flex items-center gap-4 mt-6">
           <button onclick="changePage(-1)" class="bg-white hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-slate-300 shadow-sm transition-all active:scale-95">
             <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
@@ -192,7 +181,6 @@
         </div>
       </div>
 
-      <!-- Modal Footer -->
       <div class="p-5 border-t border-slate-200 bg-white flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
           <span class="text-[10px] font-bold text-slate-400 block font-mono uppercase tracking-wider">Acceso Inmediato Completo</span>
@@ -205,11 +193,10 @@
     </div>
   </div>
 
-  <!-- Modal 2: Pasarela de Pago Multi-Opción -->
+  <!-- Modal 2: Pasarela de Pago -->
   <div id="checkout-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
       
-      <!-- Checkout Header -->
       <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
         <div>
           <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
@@ -223,7 +210,6 @@
       </div>
 
       <div class="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
-        <!-- Formulario Datos Comprador -->
         <div class="space-y-3">
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">1. Datos del Destinatario</label>
           <input type="text" id="buyer-name" placeholder="Nombre completo" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all">
@@ -231,7 +217,6 @@
           <input type="tel" id="buyer-phone" placeholder="Número de WhatsApp de contacto" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all">
         </div>
 
-        <!-- Opciones Método de Pago -->
         <div class="space-y-3">
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">2. Selecciona Forma de Pago ($20 USD)</label>
           
@@ -270,13 +255,9 @@
           </div>
         </div>
 
-        <!-- Instrucciones Dinámicas -->
-        <div id="payment-instructions" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-1 text-slate-600 hidden">
-          <!-- Inyectado dinámicamente -->
-        </div>
+        <div id="payment-instructions" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-1 text-slate-600 hidden"></div>
       </div>
 
-      <!-- Checkout Footer -->
       <div class="p-5 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
         <span class="text-xs font-semibold text-slate-600">Monto Final: <strong class="text-emerald-600 text-base font-extrabold">$20.00 USD</strong></span>
         <button onclick="processOrder(event)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all hover:scale-105">
@@ -286,7 +267,6 @@
     </div>
   </div>
 
-  <!-- Footer Corporativo -->
   <footer class="border-t border-slate-200 bg-white py-12 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
       <img src="https://i.pinimg.com/736x/0c/2b/47/0c2b473ac905566c4e7feb06c6f87b86.jpg" alt="Smart Hauss Logo" class="h-10 w-auto opacity-80 grayscale hover:grayscale-0 transition-all">
@@ -296,81 +276,20 @@
   </footer>
 
   <script>
-    // Configuración del Worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Lista completa de los 10 archivos observados en la captura de pantalla de GitHub
+    // Lista de archivos normalizada
     const manuales = [
-      { 
-        id: 1, 
-        title: "1. CONEXIÓN DE CARGAS ELECTRICAS", 
-        tag: "Electricidad", 
-        icon: "zap", 
-        file: "PDF/CONEXIÓN DE CARGAS ELECTRICAS.pdf" 
-      },
-      { 
-        id: 2, 
-        title: "2. Conductores electricos smart hauss", 
-        tag: "Electricidad", 
-        icon: "activity", 
-        file: "PDF/Conductores electricos smart hauss.docx" 
-      },
-      { 
-        id: 3, 
-        title: "3. Curso de Reparación de Refrigeradores smart hauss", 
-        tag: "Refrigeración", 
-        icon: "snowflake", 
-        file: "PDF/Curso de Reparación de Refrigeradores smart hauss.docx" 
-      },
-      { 
-        id: 4, 
-        title: "4. DETALLES DE INSTALACION ELECTRICA", 
-        tag: "Electricidad", 
-        icon: "sliders", 
-        file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" 
-      },
-      { 
-        id: 5, 
-        title: "5. Diagramas Electricos Domiciliarios hauss", 
-        tag: "Electricidad", 
-        icon: "cpu", 
-        file: "PDF/Diagramas Electricos Domiciliarios hauss.docx" 
-      },
-      { 
-        id: 6, 
-        title: "6. ELECTRICIDAD DOMICILIARIA", 
-        tag: "Electricidad", 
-        icon: "wind", 
-        file: "PDF/ELECTRICIDAD DOMICILIARIA.pdf" 
-      },
-      { 
-        id: 7, 
-        title: "7. ELECTRICIDAD BÁSICA", 
-        tag: "Electricidad", 
-        icon: "droplet", 
-        file: "PDF/ELECTRICIDAD BÁSICA.pdf" 
-      },
-      { 
-        id: 8, 
-        title: "8. Interruptor inteligente sonoff smart hauss", 
-        tag: "Automatización", 
-        icon: "terminal", 
-        file: "PDF/Interruptor inteligente sonoff smart hauss.docx" 
-      },
-      { 
-        id: 9, 
-        title: "9. LIBRO INSTALACIONES ELECTRICAS EN INTERIORES", 
-        tag: "Electricidad", 
-        icon: "trending-up", 
-        file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" 
-      },
-      { 
-        id: 10, 
-        title: "10. Manual de buenas prácticas Venezuela", 
-        tag: "Refrigeración", 
-        icon: "waves", 
-        file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" 
-      }
+      { id: 1, title: "1. CONEXIÓN DE CARGAS ELECTRICAS", tag: "Electricidad", icon: "zap", file: "PDF/CONEXIÓN DE CARGAS ELECTRICAS.pdf" },
+      { id: 2, title: "2. Conductores electricos smart hauss", tag: "Electricidad", icon: "activity", file: "PDF/Conductores electricos smart hauss.pdf" },
+      { id: 3, title: "3. Curso de Reparación de Refrigeradores smart hauss", tag: "Refrigeración", icon: "snowflake", file: "PDF/Curso de Reparación de Refrigeradores smart hauss.pdf" },
+      { id: 4, title: "4. DETALLES DE INSTALACION ELECTRICA", tag: "Electricidad", icon: "sliders", file: "PDF/DETALLES DE INSTALACION ELECTRICA.pdf" },
+      { id: 5, title: "5. Diagramas Electricos Domiciliarios hauss", tag: "Electricidad", icon: "cpu", file: "PDF/Diagramas Electricos Domiciliarios hauss.pdf" },
+      { id: 6, title: "6. ELECTRICIDAD DOMICILIARIA", tag: "Electricidad", icon: "wind", file: "PDF/ELECTRICIDAD DOMICILIARIA.pdf" },
+      { id: 7, title: "7. ELECTRICIDAD BÁSICA", tag: "Electricidad", icon: "droplet", file: "PDF/ELECTRICIDAD BÁSICA.pdf" },
+      { id: 8, title: "8. Interruptor inteligente sonoff smart hauss", tag: "Automatización", icon: "terminal", file: "PDF/Interruptor inteligente sonoff smart hauss.pdf" },
+      { id: 9, title: "9. LIBRO INSTALACIONES ELECTRICAS EN INTERIORES", tag: "Electricidad", icon: "trending-up", file: "PDF/LIBRO INSTALACIONES ELECTRICAS EN INTERIORES - INTESLA 2024-páginas-1.pdf" },
+      { id: 10, title: "10. Manual de buenas prácticas Venezuela", tag: "Refrigeración", icon: "waves", file: "PDF/Manual de buenas prácticas Venezuela-páginas-1.pdf" }
     ];
 
     let pdfDoc = null;
@@ -384,7 +303,6 @@
     const canvas = document.getElementById('pdf-render');
     const ctx = canvas.getContext('2d');
 
-    // Renderizar Tarjetas
     function renderCards(filterCategory = 'All') {
       const container = document.getElementById('cards-container');
       container.innerHTML = '';
@@ -423,7 +341,6 @@
       lucide.createIcons();
     }
 
-    // Filtrar por Categorías
     function filterCategory(cat) {
       document.querySelectorAll('.filter-btn').forEach(b => {
         b.classList.remove('bg-slate-900', 'text-white', 'shadow-sm');
@@ -434,7 +351,6 @@
       renderCards(cat);
     }
 
-    // Modal Visor PDF
     function openModal(id) {
       currentManual = manuales.find(m => m.id === id);
       document.getElementById('modal-title').innerText = currentManual.title;
@@ -444,7 +360,9 @@
       
       pageNum = 1;
       
-      const secureUrl = encodeURI(currentManual.file);
+      // Decodificación y sanitización de ruta
+      const rawUrl = currentManual.file;
+      const secureUrl = encodeURI(rawUrl);
 
       pdfjsLib.getDocument(secureUrl).promise.then(pdf => {
         pdfDoc = pdf;
@@ -455,7 +373,9 @@
         document.getElementById('pdf-loading').classList.add('hidden');
       }).catch(err => {
         console.error("Error al cargar PDF: ", err);
-        document.getElementById('pdf-loading').innerText = "⚠️ Muestra en preparación en servidor";
+        const loadingDiv = document.getElementById('pdf-loading');
+        loadingDiv.classList.remove('hidden');
+        loadingDiv.innerHTML = `<div class="p-4 text-center text-rose-600">⚠️ No se pudo procesar la vista previa.<br><span class="text-xs text-slate-500 font-normal">Asegúrate de haber subido el archivo en formato .PDF a tu carpeta /PDF</span></div>`;
       });
     }
 
@@ -504,7 +424,6 @@
       document.getElementById('preview-modal').classList.add('hidden');
     }
 
-    // Modal Checkout
     function openCheckout(id) {
       currentManual = manuales.find(m => m.id === id);
       document.getElementById('checkout-item-title').innerText = currentManual.title;
@@ -515,7 +434,6 @@
       document.getElementById('checkout-modal').classList.add('hidden');
     }
 
-    // Selección Métodos de Pago
     function selectPayment(method) {
       selectedMethod = method;
       document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('border-brand-500', 'bg-brand-50'));
@@ -535,7 +453,6 @@
       }
     }
 
-    // Envío del Pedido al Webhook
     async function processOrder(e) {
       const name = document.getElementById('buyer-name').value.trim();
       const email = document.getElementById('buyer-email').value.trim();
@@ -546,7 +463,6 @@
         return;
       }
 
-      // Reemplaza esta URL con la dirección de tu Webhook
       const WEBHOOK_URL = "https://tu-servidor-o-webhook.com/api/compra";
 
       const payload = {
@@ -593,7 +509,6 @@
       }
     }
 
-    // Inicializar la App
     renderCards();
   </script>
 </body>
